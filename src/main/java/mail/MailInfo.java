@@ -10,7 +10,7 @@ import java.util.Properties;
 
 public class MailInfo {
     private String mailServerHost; // 发送邮件的服务器的IP
-    private String mailServerPort = "25"; // 发送邮件的服务器端口
+    private String mailServerPort = "465"; // 发送邮件的服务器端口
     private String userName; // 登陆邮件发送服务器的用户名
     private String userPassword; // 登陆邮件发送服务器的密码
     private String fromAddress; // 邮件发送者的地址

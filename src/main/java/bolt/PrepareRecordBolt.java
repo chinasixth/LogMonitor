@@ -22,7 +22,7 @@ public class PrepareRecordBolt extends BaseBasicBolt {
 
     @Override
     public void execute(Tuple tuple, BasicOutputCollector basicOutputCollector) {
-        String appId = tuple.getValueByField("appid") + "";
+        String appId = tuple.getValueByField("appId") + "";
         Message message = (Message) tuple.getValueByField("message");
         // 开始邮件通知
         MonitorHandler.notify(appId, message);
@@ -30,6 +30,8 @@ public class PrepareRecordBolt extends BaseBasicBolt {
         Record record = new Record();
         try {
             // 将message的字段复制给record，字段必须相对应
+            // PropertyUtils对于同名不同类型的字段会进行自动类型转换
+            // BeanUtils不会自动类型转换，只将类型和属性名相同的字段进行复制
             BeanUtils.copyProperties(record, message);
             basicOutputCollector.emit(new Values(record));
         } catch (IllegalAccessException e) {

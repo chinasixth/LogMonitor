@@ -1,4 +1,5 @@
 import backtype.storm.Config;
+import backtype.storm.LocalCluster;
 import backtype.storm.StormSubmitter;
 import backtype.storm.generated.AlreadyAliveException;
 import backtype.storm.generated.InvalidTopologyException;
@@ -41,7 +42,7 @@ public class LogMonitorTopology {
             StormSubmitter.submitTopologyWithProgressBar(args[0], conf, builder.createTopology());
         }else{
             conf.setMaxTaskParallelism(3);
-            StormSubmitter.submitTopologyWithProgressBar("logmonitor", conf, builder.createTopology());
+            new LocalCluster().submitTopology("logmonitor", conf, builder.createTopology());
         }
 
     }

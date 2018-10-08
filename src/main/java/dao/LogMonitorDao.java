@@ -34,7 +34,7 @@ public class LogMonitorDao {
      * 查询所有的规则信息
      * */
     public List<Rule> getRuleList() {
-        String sql = "select id, name, keyword, isValid, appId, from log_monitor_rule where isValid = 1";
+        String sql = "select id, name,keyword,isValid,appId from log_monitor_rule where isValid = 1";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Rule>(Rule.class));
     }
 

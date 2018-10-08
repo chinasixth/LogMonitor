@@ -200,7 +200,7 @@ public class MonitorHandler {
      * */
     public static void notify(String appId, Message message) {
         // 根据appId获取该app所有负责人
-        List<User> users = getUserIdsByAppid(appId);
+        List<User> users = getUserIdsByAppId(appId);
         if (sendMail(appId, users, message)) {
             message.setIsEmail(1);
         }
@@ -233,13 +233,13 @@ public class MonitorHandler {
     /*
      * 根据appId获取该app的所有负责人
      * */
-    private static List<User> getUserIdsByAppid(String appId) {
-        return null;
+    private static List<User> getUserIdsByAppId(String appId) {
+        return userMap.get(appId);
     }
 
     /*
-    * 将触发信息保存到MySql
-    * */
+     * 将触发信息保存到MySql
+     * */
     public static void save(Record record) {
         new LogMonitorDao().saveRecord(record);
     }
